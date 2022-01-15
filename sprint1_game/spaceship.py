@@ -17,8 +17,8 @@ BORDER_WIDTH = 10
 BORDER = pygame.Rect((WIDTH//2)-(BORDER_WIDTH//2), 0, BORDER_WIDTH, HEIGHT)
 
 # sound effects when shooting and getting hit
-BULLET_HIT_SOUND = pygame.mixer.Sound('Assets/Grenade+1.mp3')
-BULLET_FIRE_SOUND = pygame.mixer.Sound('Assets/Gun+Silencer.mp3')
+BULLET_HIT_SOUND = pygame.mixer.Sound('sprint1_game/Assets/Grenade+1.mp3')
+BULLET_FIRE_SOUND = pygame.mixer.Sound('sprint1_game/Assets/Gun+Silencer.mp3')
 
 HEALTH_FONT = pygame.font.SysFont('comicsans', 30, bold=True)
 WINNER_FONT = pygame.font.SysFont('sans', 80, bold=True)
@@ -34,11 +34,11 @@ YELLOW_HIT = pygame.USEREVENT + 1
 RED_HIT = pygame.USEREVENT + 2
 
 # loading images of the spaceships and rotate them to the right facing direction
-YELLOW_SPACESHIP_IMAGE = pygame.image.load(os.path.join('Assets', 'spaceship_yellow.png'))
+YELLOW_SPACESHIP_IMAGE = pygame.image.load(os.path.join('sprint1_game/Assets', 'spaceship_yellow.png'))
 YELLOW_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(YELLOW_SPACESHIP_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 90)
-RED_SPACESHIP_IMAGE = pygame.image.load(os.path.join('Assets', 'spaceship_red.png'))
+RED_SPACESHIP_IMAGE = pygame.image.load(os.path.join('sprint1_game/Assets', 'spaceship_red.png'))
 RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 270)
-SPACE = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'space.png')), (WIDTH, HEIGHT))
+SPACE = pygame.transform.scale(pygame.image.load(os.path.join('sprint1_game/Assets', 'space.png')), (WIDTH, HEIGHT))
 
 # handle both yellow and red and bullet movements
 def yellow_handle_movement(keys_pressed, yellow):
