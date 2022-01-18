@@ -6,8 +6,7 @@ pygame.font.init()
 pygame.mixer.init()
 
 
-# handle both yellow and red and bullet movements
-
+# handle both yellow and red movements and bullet  #####################################
 def yellow_handle_movement(keys_pressed, yellow):
   if keys_pressed[pygame.K_1] and yellow.x - VEL > PADDING:  # Left
     # if keys_pressed[pygame.K_a] and yellow.x >= 0: # Left
@@ -21,8 +20,6 @@ def yellow_handle_movement(keys_pressed, yellow):
   if keys_pressed[pygame.K_4] and yellow.x + VEL + yellow.width < BORDER.x:  # Right
     # if keys_pressed[pygame.K_d] and yellow.x <= (((WIDTH/2)-(BORDER_WIDTH/2))-SPACESHIP_WIDTH): # Right
     yellow.x += VEL
-
-
 def red_handle_movement(keys_pressed, red):
   if keys_pressed[pygame.K_7] and red.x - VEL > BORDER.x + BORDER.width + PADDING:  # Left
     red.x -= VEL
@@ -32,8 +29,6 @@ def red_handle_movement(keys_pressed, red):
     red.y += VEL
   if keys_pressed[pygame.K_0] and red.x + VEL + red.width < WIDTH:  # Right
     red.x += VEL
-
-
 def handle_bullets(yellow_bullets, red_bullets, yellow, red):
   for bullet in yellow_bullets:
     # Because yellow is on the left side and the direction of its bullets needs to move right (+pxl)
@@ -54,14 +49,8 @@ def handle_bullets(yellow_bullets, red_bullets, yellow, red):
     if bullet.x > WIDTH:
       red_bullets.remove(bullet)
 
-# draw stuff on the surface
-
-
-def draw_window(yellow, red, yellow_bullets, red_bullets, yellow_health, red_health, yellow_total_wins_so_far, red_total_wins_so_far, ttl_play, origin_health):
-  # WIN.fill(WHITE)
-  WIN.blit(SPACE, (0, 0))
-  pygame.draw.rect(WIN, BLACK, BORDER)
-
+# draw hp, total wins, total play #########################################################################
+def draw_hp(yellow_health, red_health, origin_health):
   # start: draw health text => "Health"
   HEALTH_TEXT = HEALTH_FONT.render("Health:", 1, WHITE)
   HEALTH_TEXT_WIDTH = HEALTH_TEXT.get_width()
@@ -92,20 +81,16 @@ def draw_window(yellow, red, yellow_bullets, red_bullets, yellow_health, red_hea
     red_actual_hp(YELLOW, red_health)
   else:
     red_actual_hp(WHITE, red_health)
-      
+def draw_total_wins(yellow_total_win_so_far, red_total_win_so_far):
   # drawing both texts of total win and define where
-  yellow_total_wins_text = TOTAL_WINS_FONT.render(
-    'Wins:' + str(yellow_total_wins_so_far), 1, WHITE)
-  red_total_wins_text = TOTAL_WINS_FONT.render(
-    'Wins:' + str(red_total_wins_so_far), 1, WHITE)
-  WIN.blit(yellow_total_wins_text, (
-    (WIDTH//2 - yellow_total_wins_text.get_width() - (BORDER_WIDTH//2))-10, 10))
-  WIN.blit(red_total_wins_text, ((WIDTH//2 + BORDER_WIDTH//2)+10, 10))
-
-  # draw two spaceships
-  WIN.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
-  WIN.blit(RED_SPACESHIP, (red.x, red.y))
-
+  yellow_total_win_text = TOTAL_WINS_FONT.render(
+    'Wins:' + str(yellow_total_win_so_far), 1, WHITE)
+  red_total_win_text = TOTAL_WINS_FONT.render(
+    'Wins:' + str(red_total_win_so_far), 1, WHITE)
+  WIN.blit(yellow_total_win_text, (
+    (WIDTH//2 - yellow_total_win_text.get_width() - (BORDER_WIDTH//2))-10, 10))
+  WIN.blit(red_total_win_text, ((WIDTH//2 + BORDER_WIDTH//2)+10, 10))
+def draw_total_play(ttl_play, yellow_bullets, red_bullets):
   # define total amount of play
   total_play_text = TOTAL_PLAY_FONT.render(
     "Total Plays:" + str(ttl_play), 1, WHITE)
@@ -114,11 +99,26 @@ def draw_window(yellow, red, yellow_bullets, red_bullets, yellow_health, red_hea
     pygame.draw.rect(WIN, RED, bullet)
   for bullet in yellow_bullets:
     pygame.draw.rect(WIN, YELLOW, bullet)
+
+# draw stuff on the surface #################################
+def draw_window(yellow, red, yellow_bullets, red_bullets, yellow_health, red_health, origin_health,  yellow_total_win_so_far, red_total_win_so_far, ttl_play):
+  # WIN.fill(WHITE)
+  WIN.blit(SPACE, (0, 0))
+  pygame.draw.rect(WIN, BLACK, BORDER)
+  # draw two spaceships
+  WIN.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
+  WIN.blit(RED_SPACESHIP, (red.x, red.y))
+  
+  # call draw_hp()
+  draw_hp(yellow_health, red_health, origin_health)
+  # Call draw_total_wins()
+  draw_total_wins(yellow_total_win_so_far, red_total_win_so_far)
+  # Call draw_total_play()
+  draw_total_play(ttl_play, yellow_bullets, red_bullets)
+  
   pygame.display.update()
 
 # when someone wins
-
-
 def draw_winner(text, yellow, red, yellow_bullets, red_bullets, yellow_health, red_health, winner):
   if winner == "yellow":
     draw_text = WINNER_FONT.render(text, 1, YELLOW)
@@ -156,6 +156,8 @@ def draw_winner(text, yellow, red, yellow_bullets, red_bullets, yellow_health, r
       if yellow.x - PUSH_OPPONENT >= 10:
         # print(yellow.x)
         yellow.x -= PUSH_OPPONENT
+
+
 
 # LEFT_CENTER = WIDTH//4-SPACESHIP_WIDTH//2
 HEIGHT_CENTER = HEIGHT//2-SPACESHIP_HEIGHT//2
