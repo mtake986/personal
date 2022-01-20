@@ -1,6 +1,7 @@
 # todo list
 ## un-done
-* increase the direction of bullets. like pong game. reflect when bullets get the top and bottom. 
+* increase the direction of bullets. like pong game. reflect when bullets get the top and bottom. 1/17 I tried and could shoot diagonally, but couldn't implement reflecting. 
+* Have two game modes => single, two players. move the red spaceship automatically, only one user can play against a computer. 
 ## done
 **1/15**
 * separate functions and main function if possible
