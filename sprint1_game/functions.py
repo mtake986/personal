@@ -37,7 +37,7 @@ def handle_bullets(yellow_bullets, red_bullets, yellow, red):
       pygame.event.post(pygame.event.Event(RED_HIT))
       # when a spaceship can hit the opponent, reload one bullet so they can shoot again
       yellow_bullets.remove(bullet)
-    if bullet.x > WIDTH:
+    if bullet.x > WIDTH: # Out of Screen
       # remove one bullet from yellow_bullets list, so the spaceship can shoot again
       yellow_bullets.remove(bullet)
   for bullet in red_bullets:
@@ -46,7 +46,7 @@ def handle_bullets(yellow_bullets, red_bullets, yellow, red):
     if yellow.colliderect(bullet):
       pygame.event.post(pygame.event.Event(YELLOW_HIT))
       red_bullets.remove(bullet)
-    if bullet.x > WIDTH:
+    if bullet.x < 0: # Out of Screen
       red_bullets.remove(bullet)
 
 # draw hp, total wins, total play #########################################################################
@@ -128,7 +128,7 @@ def draw_winner(text, yellow, red, yellow_bullets, red_bullets, yellow_health, r
   pygame.display.update()
   pygame.time.delay(5000)
   # Disable shooting during 5 seconds. 
-  MAX_BULLETS = 0
+  MAX_BULLETS = -1
   for event in pygame.event.get():
     if event.type == pygame.KEYDOWN:
       # when the yellow player shoot

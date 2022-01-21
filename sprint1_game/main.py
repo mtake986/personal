@@ -5,6 +5,7 @@ total_amount_of_play = 0
 origin_health = 10
 # from xml.dom.expatbuilder import parseString
 from functions import *
+
 def main(origin_health, yellow_ttl_win, red_ttl_win, ttl_play):
   yellow = pygame.Rect(200, HEIGHT_CENTER, SPACESHIP_WIDTH, SPACESHIP_HEIGHT)
   red = pygame.Rect(WIDTH-200-SPACESHIP_WIDTH, HEIGHT_CENTER, SPACESHIP_WIDTH, SPACESHIP_HEIGHT)
@@ -39,12 +40,14 @@ def main(origin_health, yellow_ttl_win, red_ttl_win, ttl_play):
             yellow.x + yellow.width, yellow.y + yellow.height//2 + 5, 10, 5) # Rect(where_x, where_x, bulllet_length, bullet_width)
           yellow_bullets.append(bullet)
           BULLET_FIRE_SOUND.play()
+          # print(f'Max bullets => {MAX_BULLETS}, pressed => {event.key}, len(yellow_bullets) => {yellow_bullets}')
         # when the red play shoot
         if event.key == pygame.K_6 and len(red_bullets) < MAX_BULLETS:
           bullet = pygame.Rect(
             red.x, red.y + red.height//2 + 5, 10, 5)
           red_bullets.append(bullet) # Rect(where_x, where_x, bulllet_length, bullet_width)
           BULLET_FIRE_SOUND.play()
+          # print(f'Max bullets => {MAX_BULLETS}, pressed => {event.key}, len(red_bullets) => {red_bullets}')
       if event.type == RED_HIT:
         # decrease the health, play the sound, push the opponent
         red_health -= 1
@@ -62,7 +65,7 @@ def main(origin_health, yellow_ttl_win, red_ttl_win, ttl_play):
     keys_pressed = pygame.key.get_pressed()
     yellow_handle_movement(keys_pressed, yellow)
     red_handle_movement(keys_pressed, red)
-
+    
     handle_bullets(yellow_bullets, red_bullets, yellow, red)
     draw_window(yellow, red, yellow_bullets, red_bullets, yellow_health, red_health, origin_health, yellow_total_win_so_far, red_total_win_so_far, ttl_play)
     
@@ -81,10 +84,7 @@ def main(origin_health, yellow_ttl_win, red_ttl_win, ttl_play):
     if winner_text != "": 
       draw_winner(winner_text, yellow, red, yellow_bullets, red_bullets, yellow_health, red_health, winner)
       break
-    
-
-
-  # Instead of closing the window, restart the game
+      # Instead of closing the window, restart the game
   main(origin_health, yellow_total_win_so_far, red_total_win_so_far, total_amount_of_play+1)
 
 
