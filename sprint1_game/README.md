@@ -6,8 +6,7 @@
 
 {Describe your purpose for writing this software.}
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the game being played and a walkthrough of the code.}
-
+[YouTube Demo](https://youtu.be/Njuv3lc9aSc)
 [Software Demo Video](http://youtube.link.goes.here)
 
 # Development Environment

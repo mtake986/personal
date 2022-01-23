@@ -14,5 +14,5 @@
 * disable shooting for 5 seconds after game ended. 
 * change text color of "Yellow/Red Wins" to yellow/red depending on which spaceship wins
 
-**1/17**s
+**1/17**
 * create a new function to separate yellow/red_actual_hp etc. 

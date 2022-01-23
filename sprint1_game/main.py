@@ -12,8 +12,8 @@ def main(origin_health, yellow_ttl_win, red_ttl_win, ttl_play):
   
   MAX_BULLETS = 3
   # this is for limiting the maximum number users can shoot 
-  red_bullets = []
   yellow_bullets = []
+  red_bullets = []
 
   red_health = origin_health
   yellow_health = origin_health
@@ -67,6 +67,7 @@ def main(origin_health, yellow_ttl_win, red_ttl_win, ttl_play):
     red_handle_movement(keys_pressed, red)
     
     handle_bullets(yellow_bullets, red_bullets, yellow, red)
+    
     draw_window(yellow, red, yellow_bullets, red_bullets, yellow_health, red_health, origin_health, yellow_total_win_so_far, red_total_win_so_far, ttl_play)
     
     # define winner_text and change the value depending on who the winner is 
