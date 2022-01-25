@@ -18,8 +18,9 @@ You'll see the two spaceships and below is the movements.
 * 8 => move up
 * 9 => move down
 * 0 => move right
+
+
 [YouTube Demo](https://youtu.be/Njuv3lc9aSc)
-[Software Demo Video](http://youtube.link.goes.here)
 
 # Development Environment
 * python3.8.5
