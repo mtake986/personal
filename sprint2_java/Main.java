@@ -145,7 +145,7 @@ class Main {
                   add(2.54f);
                 }};
                 show_result(length, value, len_multiplier_in, selected);
-                break;
+                break; 
               case "feet":
                 ArrayList<Float> len_multiplier_ft = new ArrayList<Float>() {{
                   add(12f);
