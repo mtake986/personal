@@ -6,20 +6,30 @@ class Main {
     // for(String element : list) {
     //   System.out.println(element);
     // }
-    System.out.println("Pick one below  you want to convert from and type the number. ");
-    for(int i=0; i<list.size(); i++) {
-      System.out.println((i+1) +". " + list.get(i));
-    }
     while(true) {
+      // Ask users for an user input 
+      System.out.println("Pick one below you want to convert from and type the number. ");
+      // Show choices for users
+      ArrayList<String> numbers_lis = new ArrayList<>();
+      for(int i=0; i<list.size(); i++) {
+        System.out.println((i+1) +". " + list.get(i));
+        String string_i=String.valueOf(i+1);
+        numbers_lis.add(string_i);
+      }
       Scanner obj = new Scanner(System.in);
-      int measurements_num = obj.nextInt();
-      if (1 <= measurements_num && measurements_num <= list.size()) {
-        System.out.println("Your pick => " + list.get(measurements_num-1));
-        String selected_measurement = list.get(measurements_num-1);
-        list.remove(measurements_num-1);
-        return selected_measurement;
+      String string_measurements_num = obj.nextLine();
+      if (numbers_lis.contains(string_measurements_num)) {
+        int measurements_num = Integer.parseInt(string_measurements_num);
+        if (1 <= measurements_num && measurements_num <= list.size()) {
+          System.out.println("Your pick => " + list.get(measurements_num-1));
+          String selected_measurement = list.get(measurements_num-1);
+          list.remove(measurements_num-1);
+          return selected_measurement;
+        } else {
+          error();
+        }
       } else {
-        error("----- Error: Invalid number -----");
+        error();
       }
     }
   }
@@ -28,26 +38,33 @@ class Main {
       if (selected.equals("temp")) {
         System.out.println("Type a number from -999.9 to 999.9: ");
         Scanner val_obj = new Scanner(System.in);
-        float val_obj_to_float = val_obj.nextFloat();
-        if (-999.9 <= val_obj_to_float && val_obj_to_float <= 999.9) {
-          return val_obj_to_float;
+        if (val_obj.hasNextFloat() || val_obj.hasNextInt()) {
+          float val_obj_to_float = val_obj.nextFloat();
+          if (-999.9 <= val_obj_to_float && val_obj_to_float <= 999.9) {
+            return val_obj_to_float;
+          }
+          error();
         } else {
-          error("----- Error: Invalid number -----");
+          error();
         }
       } else {
         System.out.println("Type a number from 0 to 99,999.9: ");
         Scanner val_obj = new Scanner(System.in);
-        float val_obj_to_float = val_obj.nextFloat();
-        if (0 <= val_obj_to_float && val_obj_to_float <= 999.9) {
-          return val_obj_to_float;
+        if (val_obj.hasNextFloat() || val_obj.hasNextInt()) {
+          float val_obj_to_float = val_obj.nextFloat();
+          if (0 <= val_obj_to_float && val_obj_to_float <= 999.9) {
+            return val_obj_to_float;
+          } else {
+            error();
+          }
         } else {
-          error("----- Error: Invalid number -----");
+          error();
         }
       }
     }
   }
-  static void error(String msg) {
-    System.out.println(msg);
+  static void error() {
+    System.out.println("===== ERROR!! INVALID NUMBER!! =====");
   }
   static void endMsg() {
     System.out.println("Thanks for using. Have a wonderful day!!");
@@ -65,22 +82,22 @@ class Main {
     System.out.println("--------------------------------------");
     
     while (true) {
-      Scanner obj = new Scanner(System.in);  // Create a Scanner object
       System.out.println("Type one of the numbers. \n1. continue \n2. quit");
+      Scanner obj = new Scanner(System.in);  // Create a Scanner object
       String quit_continue = obj.nextLine();  // Read user input
       // Ask users to quit or convert
-      if (quit_continue.equals("1")) {    
-        
+      if (quit_continue.equals("1")) {
         while (true) {
           // Take an input from a user
-          Scanner which = new Scanner(System.in);
           System.out.println("Which do you convert?? Type one of the numbers. \n1. weight \n2. temp \n3. length");
+          Scanner which = new Scanner(System.in);
           String choice = which.nextLine();
           if (choice.equals("1")){
             ArrayList<String> weight = new ArrayList<>();
             weight.add("kg");
             weight.add("lbs");
             weight.add("oz");
+
             // get a selected measurement, value
             String selected = show_and_select_measurements(weight);
             float value = get_number("weight");
@@ -163,16 +180,16 @@ class Main {
             }
             break;
           } else {
-            error("----- Error: Invalid number -----");
+            error();
           }
         }
       } else if (quit_continue.equals("2")) {
         endMsg();
+        System.out.println("===============================================");
         break;
       } else {
-        error("----- Error: Invalid number -----");
+        error();
       }
-      System.out.println("===============================================");
     }
   }
 }
