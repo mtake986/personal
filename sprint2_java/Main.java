@@ -40,7 +40,7 @@ class Main {
         Scanner val_obj = new Scanner(System.in);
         if (val_obj.hasNextFloat() || val_obj.hasNextInt()) {
           float val_obj_to_float = val_obj.nextFloat();
-          if (-999.9 <= val_obj_to_float && val_obj_to_float <= 999.9) {
+          if (-1000 < val_obj_to_float && val_obj_to_float < 1000) {
             return val_obj_to_float;
           }
           error();
@@ -52,7 +52,7 @@ class Main {
         Scanner val_obj = new Scanner(System.in);
         if (val_obj.hasNextFloat() || val_obj.hasNextInt()) {
           float val_obj_to_float = val_obj.nextFloat();
-          if (0 <= val_obj_to_float && val_obj_to_float <= 999.9) {
+          if (0 <= val_obj_to_float && val_obj_to_float < 100000) {
             return val_obj_to_float;
           } else {
             error();
@@ -77,9 +77,10 @@ class Main {
   }
 
   public static void main(String[] args) {
-    System.out.println("--------------------------------------");
-    System.out.println("----- Welcome to a coverter app. -----");
-    System.out.println("--------------------------------------");
+    System.out.println("---------------------------------------");
+    System.out.println("----- Welcome to a converter app. -----");
+    System.out.println("----- Press Ctl + c to quit. ----------");
+    System.out.println("---------------------------------------");
     
     while (true) {
       System.out.println("Type one of the numbers. \n1. continue \n2. quit");
