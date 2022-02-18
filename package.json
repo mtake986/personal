@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "react-chat-engine": "^1.11.22"
+    "react-chat-engine": "^1.11.22",
+    "react-icons": "^4.3.1"
   }
 }
