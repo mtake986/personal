@@ -5,6 +5,8 @@ This app has simple CRUD features, so users can create a task, read, update, and
 For saving data, I used JSON server although it hasn't worked.
 
 The purpose to create this app is to start a new JavaScript journey. I see JS has a huge potential because it can work for frontend and backend. Also, so many tools for it have been invented such as Next.js, TypeScript so on. I will focus on learning React in a couple of months. After that, I probably move on to MERN stack. 
+
+
 [YouTube Demo](https://youtu.be/oh-7WftnYD0)
 
 # Development Environment
